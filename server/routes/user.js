@@ -1,9 +1,12 @@
 import express from 'express';
-import { getUser, postUser } from '../controlers/user.js';
+import { postUser } from '../controlers/user.js';
+import {
+  verifyTokenAndAuthorization,
+  verifyToken,
+} from '../routes/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/', getUser);
-router.post('/', postUser);
+router.put('/:id', verifyToken, postUser);
 
 export default router;

@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+// app.get('/', (req, res) => {
+//   res.json({ res: 'Hula' });
+// });
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
