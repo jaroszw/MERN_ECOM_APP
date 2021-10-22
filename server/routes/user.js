@@ -1,12 +1,14 @@
-import express from 'express';
-import { postUser } from '../controlers/user.js';
+import express from "express";
+import { postUser, deleteUser, getAdminUser } from "../controlers/user.js";
 import {
   verifyTokenAndAuthorization,
-  verifyToken,
-} from '../routes/verifyToken.js';
+  verifyTokenAndAdmin,
+} from "../routes/verifyToken.js";
 
 const router = express.Router();
 
-router.put('/:id', verifyToken, postUser);
+router.put("/:id", verifyTokenAndAuthorization, postUser);
+router.delete("/:id", verifyTokenAndAuthorization, deleteUser);
+router.get("/:id", verifyTokenAndAdmin, getAdminUser);
 
 export default router;

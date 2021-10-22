@@ -1,9 +1,8 @@
-import User from '../models/User.js';
-import CryptoJS from 'crypto-js';
-import jwt from 'jsonwebtoken';
+import User from "../models/User.js";
+import CryptoJS from "crypto-js";
+import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
-  console.log('Registering');
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
@@ -25,7 +24,7 @@ export const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
 
-    !user && res.status(401).json('No user found');
+    !user && res.status(401).json("No user found");
 
     const hashPassword = CryptoJS.AES.decrypt(
       user.password,
@@ -34,7 +33,7 @@ export const loginUser = async (req, res) => {
     const OryginalPassword = hashPassword.toString(CryptoJS.enc.Utf8);
 
     OryginalPassword !== req.body.password &&
-      res.status(401).json('Wrong credentials');
+      res.status(401).json("Wrong credentials");
 
     const accessToken = jwt.sign(
       {
@@ -42,9 +41,8 @@ export const loginUser = async (req, res) => {
         isAdmin: user.isAdmin,
       },
       process.env.JWT_SEC,
-      { expiresIn: '3d' }
+      { expiresIn: "3d" }
     );
-    console.log('After token');
 
     const { password, ...others } = user._doc;
     res.status(200).json({ ...others, accessToken });
