@@ -1,5 +1,5 @@
-import User from "../models/User.js";
-import CryptoJS from "crypto-js";
+import User from '../models/User.js';
+import CryptoJS from 'crypto-js';
 
 export const postUser = async (req, res) => {
   if (req.body.password) {
@@ -51,8 +51,8 @@ export const findAllUsers = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    await User.findOneAndDelete(req.params.id);
-    return res.status(200).json('Usr has been deleted sucesfully');
+    await User.findByIdAndDelete(req.params.id);
+    return res.status(200).json('User has been deleted sucesfully');
   } catch (error) {
     res.status(400).json(err);
   }

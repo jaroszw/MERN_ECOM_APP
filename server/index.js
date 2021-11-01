@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 //routes
 import userRoutes from './routes/user.js';
 import authRoutes from './routes/auth.js';
+import productsRoutes from './routes/product.js';
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productsRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;

@@ -7,7 +7,7 @@ const cartSchema = new mongoose.Schema(
       { productId: { type: String }, quantity: { type: Number, default: 1 } },
     ],
   },
-  { timeStamp: true }
+  { timestamp: true }
 );
 
 export default mongoose.model('cart', cartSchema);
