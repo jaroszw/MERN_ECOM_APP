@@ -23,3 +23,65 @@ export const postUser = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+export const findUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const { password, ...others } = user._doc;
+
+    return res.status(200).json({ ...others });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const findAllUsers = async (req, res) => {
+  const query = req.query.new;
+  console.log(query);
+  try {
+    const users = query
+      ? await User.find({}).sort({ _id: -1 }).limit(3)
+      : await User.find({});
+    return res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    await User.findOneAndDelete(req.params.id);
+    return res.status(200).json('Usr has been deleted sucesfully');
+  } catch (error) {
+    res.status(400).json(err);
+  }
+};
+
+//GET USER STATS
+
+export const userStats = async (req, res) => {
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+
+  try {
+    const data = await User.aggregate([
+      { $match: { createdAt: { $gte: lastYear } } },
+      {
+        $project: {
+          month: { $month: '$createdAt' },
+        },
+      },
+      {
+        $group: {
+          _id: '$month',
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(200).json(error);
+  }
+};

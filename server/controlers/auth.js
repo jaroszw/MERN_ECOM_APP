@@ -3,7 +3,6 @@ import CryptoJS from 'crypto-js';
 import jwt from 'jsonwebtoken';
 
 export const registerUser = async (req, res) => {
-  console.log('Registering');
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
@@ -44,10 +43,15 @@ export const loginUser = async (req, res) => {
       process.env.JWT_SEC,
       { expiresIn: '3d' }
     );
-    console.log('After token');
 
     const { password, ...others } = user._doc;
     res.status(200).json({ ...others, accessToken });
+
+    // WITH COOKIES
+    // res
+    //   .cookie('token', accessToken, { httpOnly: true })
+    //   .status(200)
+    //   .json({ message: 'Login succesful', ...others });
   } catch (error) {
     console.log(error);
   }
