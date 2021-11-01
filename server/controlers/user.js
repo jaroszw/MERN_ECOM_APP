@@ -1,5 +1,5 @@
-import User from '../models/User.js';
-import CryptoJS from 'crypto-js';
+import User from "../models/User.js";
+import CryptoJS from "crypto-js";
 
 export const postUser = async (req, res) => {
   if (req.body.password) {
