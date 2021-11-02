@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.js';
 import productsRoutes from './routes/product.js';
 import cartRoutes from './routes/cart.js';
 import cartOrder from './routes/order.js';
+import stripePayments from './routes/stripe.js';
 
 const app = express();
 dotenv.config();
@@ -21,6 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', cartOrder);
+app.use('/api/payment', stripePayments);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
