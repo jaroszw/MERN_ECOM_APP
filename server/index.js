@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/user.js';
 import authRoutes from './routes/auth.js';
 import productsRoutes from './routes/product.js';
+import cartRoutes from './routes/cart.js';
+import cartOrder from './routes/order.js';
 
 const app = express();
 dotenv.config();
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/orders', cartOrder);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
