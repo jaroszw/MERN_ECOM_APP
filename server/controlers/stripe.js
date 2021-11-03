@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-
+import axios from "axios";
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const payWithStripe = (req, res) => {

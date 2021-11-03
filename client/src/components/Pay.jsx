@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
 const STRIPE_KEY =
@@ -16,15 +17,11 @@ const Pay = () => {
     console.log("RENDER");
     const makeRequest = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/checkout/payment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ tokenId: stripeToken.id, amount: 2000 }),
-        });
-        const data = await res.json();
-        console.log(data);
+        const res = await axios.post(
+          "http://localhost:5000/api/checkout/payment",
+          { tokenId: stripeToken.id, amount: 2000 }
+        );
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
