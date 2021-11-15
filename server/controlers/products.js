@@ -37,6 +37,7 @@ export const deleteProduct = async (req, res) => {
 };
 
 export const findProduct = async (req, res) => {
+  console.log(req.params.id);
   try {
     const product = await Product.findById(req.params.id);
     return res.status(200).json(product);
