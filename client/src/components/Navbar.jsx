@@ -97,11 +97,13 @@ const Navbar = () => {
         <Right>
           <ManuItem>REGISTER</ManuItem>
           <ManuItem>SING IN</ManuItem>
-          <ManuItem>
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlinedIcon />
-            </Badge>
-          </ManuItem>
+          <Link to="/cart">
+            <ManuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlinedIcon />
+              </Badge>
+            </ManuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

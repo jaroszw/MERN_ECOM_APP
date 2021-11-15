@@ -1,9 +1,7 @@
 import Stripe from 'stripe';
-// import axios from "axios";
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const payWithStripe = (req, res) => {
-  console.log(req.body);
   stripe.charges.create(
     {
       source: req.body.tokenId,
@@ -14,7 +12,7 @@ export const payWithStripe = (req, res) => {
       if (stripeError) {
         res.status(500).json({ payment: stripeError });
       } else {
-        res.status(500).json({ payment: stripeResponse });
+        res.status(200).json({ payment: stripeResponse });
       }
     }
   );
