@@ -1,23 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import AddIcon from "@mui/icons-material/Add";
-import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
-import { mobile } from "../responsive";
-import { useLocation } from "react-router";
-import axios from "axios";
-import { publicRequest } from "../requestMethods.js";
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddIcon from '@mui/icons-material/Add';
+import styled from 'styled-components';
+import Announcement from '../components/Announcement';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import Newsletter from '../components/Newsletter';
+import { mobile } from '../responsive';
+import { useLocation } from 'react-router';
+import { publicRequest } from '../requestMethods.js';
+import { addProducts } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  ${mobile({ padding: '10px', flexDirection: 'column' })}
 `;
 
 const ImgContainer = styled.div`
@@ -28,13 +29,13 @@ const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: '40vh' })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
+  ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -55,7 +56,7 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: '100%' })}
 `;
 
 const Filter = styled.div`
@@ -89,7 +90,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: '100%' })}
 `;
 
 const AmountContainer = styled.div`
@@ -122,19 +123,20 @@ const Button = styled.button`
 
 const Product = () => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
+  const id = location.pathname.split('/')[2];
 
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get(`/products/find/${id}`);
         setProduct(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -144,9 +146,14 @@ const Product = () => {
   }, [id]);
 
   const handleQuantity = (param) => {
-    param === "dec"
+    param === 'dec'
       ? quantity > 1 && setQuantity((prev) => prev - 1)
       : setQuantity((prev) => prev + 1);
+  };
+
+  const handleClick = () => {
+    console.log(quantity);
+    dispatch(addProducts({ ...product, quantity, color, size }));
   };
 
   return (
@@ -165,27 +172,29 @@ const Product = () => {
             <Filter>
               <FilterTitle>Color</FilterTitle>
               {product.color?.map((color) => (
-                <FilterColor color={color} onClick={() => setColor(color)} />
+                <FilterColor
+                  key={color}
+                  color={color}
+                  onClick={() => setColor(color)}
+                />
               ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
+              <FilterSize key={size} onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((size) => (
-                  <FilterSizeOption onChange={(e) => setSize(e.target.value)}>
-                    {size}
-                  </FilterSizeOption>
+                  <FilterSizeOption key={size}>{size}</FilterSizeOption>
                 ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <RemoveCircleOutlineIcon onClick={() => handleQuantity("dec")} />
+              <RemoveCircleOutlineIcon onClick={() => handleQuantity('dec')} />
               <Amount>{quantity}</Amount>
-              <AddIcon onClick={() => handleQuantity("inc")} />
+              <AddIcon onClick={() => handleQuantity('inc')} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

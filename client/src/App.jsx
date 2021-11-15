@@ -2,18 +2,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import Pay from "./components/Pay";
+// import Pay from './components/Pay';
 
-import Home from "./pages/Home";
-import ProductList from "./pages/ProductList";
-import Product from "./pages/Product";
-import Cart from "./pages/Cart";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Home from './pages/Home';
+import ProductList from './pages/ProductList';
+import Product from './pages/Product';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const App = () => {
   const user = true;
