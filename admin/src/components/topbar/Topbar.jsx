@@ -1,9 +1,9 @@
-import React from "react";
-import "./topbar.css";
+import React from 'react';
+import './topbar.css';
 
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import LanguageIcon from "@mui/icons-material/Language";
-import SettingsIcon from "@mui/icons-material/Settings";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import LanguageIcon from '@mui/icons-material/Language';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Topbar = () => {
   return (
@@ -14,17 +14,17 @@ const Topbar = () => {
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
-            <NotificationsNoneIcon sx={{ fontSize: "2rem" }} />
+            <NotificationsNoneIcon sx={{ fontSize: '2rem' }} />
             <span className="topiconBadge">2</span>
           </div>
 
           <div className="topbarIconContainer">
-            <LanguageIcon sx={{ fontSize: "2rem" }} />
+            <LanguageIcon sx={{ fontSize: '2rem' }} />
             <span className="topiconBadge">2</span>
           </div>
 
           <div className="topbarIconContainer">
-            <SettingsIcon sx={{ fontSize: "2rem" }} />
+            <SettingsIcon sx={{ fontSize: '2rem' }} />
           </div>
           <img
             src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
