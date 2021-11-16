@@ -3,20 +3,23 @@ import {
   Switch,
   Route,
   Redirect,
-} from 'react-router-dom';
+} from "react-router-dom";
 
 // import Pay from './components/Pay';
 
-import Home from './pages/Home';
-import ProductList from './pages/ProductList';
-import Product from './pages/Product';
-import Cart from './pages/Cart';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Success from './pages/Success';
+import Home from "./pages/Home";
+import ProductList from "./pages/ProductList";
+import Product from "./pages/Product";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Success from "./pages/Success";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const user = true;
+  const user = useSelector((state) => state.user.currentUser);
+  console.log(user);
+
   return (
     <div>
       <Router>

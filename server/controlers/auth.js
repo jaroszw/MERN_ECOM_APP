@@ -24,16 +24,20 @@ export const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
 
-    !user && res.status(401).json("No user found");
+    if (!user) {
+      return res.status(401).json("No user found");
+    }
 
     const hashPassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.PASS_SECRET
     );
+
     const OryginalPassword = hashPassword.toString(CryptoJS.enc.Utf8);
 
-    OryginalPassword !== req.body.password &&
-      res.status(401).json("Wrong credentials");
+    if (OryginalPassword !== req.body.password) {
+      return res.status(401).json("Wrong credentials");
+    }
 
     const accessToken = jwt.sign(
       {

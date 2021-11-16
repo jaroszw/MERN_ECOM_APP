@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { popularProducts } from '../data';
-import Product from './Product';
-import axios from 'axios';
+import { useEffect } from "react";
+import { useState } from "react";
+import styled from "styled-components";
+import Product from "./Product";
+import axios from "axios";
 
 const Container = styled.div`
   padding: 20px;
@@ -25,7 +24,6 @@ const Products = ({ cat, sort, filters }) => {
             : `http://localhost:5000/api/products`
         );
         setProducts(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -46,11 +44,11 @@ const Products = ({ cat, sort, filters }) => {
   }, [products, cat, filters]);
 
   useEffect(() => {
-    if (sort === 'newest') {
+    if (sort === "newest") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
-    } else if (sort === 'asc') {
+    } else if (sort === "asc") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.price - b.price)
       );

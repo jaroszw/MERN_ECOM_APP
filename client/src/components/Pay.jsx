@@ -10,11 +10,9 @@ const Pay = () => {
 
   const onToken = (token) => {
     setStripeToken(token);
-    console.log(token.id);
   };
 
   useEffect(() => {
-    console.log("RENDER");
     const makeRequest = async () => {
       try {
         const res = await axios.post(

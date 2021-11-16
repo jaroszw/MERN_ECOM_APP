@@ -1,17 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import { mobile } from '../responsive.js';
+import React from "react";
+import styled from "styled-components";
+import { mobile } from "../responsive.js";
 
-import Badge from '@mui/material/Badge';
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Badge from "@mui/material/Badge";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
-  ${mobile({ height: '200px' })};
+  ${mobile({ height: "200px" })};
 `;
 
 const StyledLink = styled(Link)`
@@ -23,13 +23,13 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: '20px 0px', flexDirection: 'column' })};
+  ${mobile({ padding: "20px 0px", flexDirection: "column" })};
 `;
 
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: 'none' })}
+  ${mobile({ display: "none" })}
 `;
 
 const SerchContainer = styled.div`
@@ -57,7 +57,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  ${mobile({ fontSize: '42px', padding: '20px 10px' })}
+  ${mobile({ fontSize: "42px", padding: "20px 10px" })}
 `;
 
 const Right = styled.div`
@@ -66,14 +66,14 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  ${mobile({ flex: 2, justifyContent: 'center' })}
+  ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
 const ManuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 15px;
-  ${mobile({ fontSize: '12px', marginLeft: '10px' })}
+  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Navbar = () => {
@@ -86,7 +86,7 @@ const Navbar = () => {
           <Language>EN</Language>
           <SerchContainer>
             <Input placeholder="search" />
-            <SearchIcon style={{ color: 'gray', fontsize: '16px' }} />
+            <SearchIcon style={{ color: "gray", fontsize: "16px" }} />
           </SerchContainer>
         </Left>
         <Center>
@@ -96,7 +96,9 @@ const Navbar = () => {
         </Center>
         <Right>
           <ManuItem>REGISTER</ManuItem>
-          <ManuItem>SING IN</ManuItem>
+          <ManuItem>
+            <Link to="/login">SING IN</Link>
+          </ManuItem>
           <Link to="/cart">
             <ManuItem>
               <Badge badgeContent={quantity} color="primary">
