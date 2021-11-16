@@ -14,17 +14,17 @@ const Topbar = () => {
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
-            <NotificationsNoneIcon sx={{ fontSize: "2.5rem" }} />
+            <NotificationsNoneIcon sx={{ fontSize: "2rem" }} />
             <span className="topiconBadge">2</span>
           </div>
 
           <div className="topbarIconContainer">
-            <LanguageIcon sx={{ fontSize: "2.5rem" }} />
+            <LanguageIcon sx={{ fontSize: "2rem" }} />
             <span className="topiconBadge">2</span>
           </div>
 
           <div className="topbarIconContainer">
-            <SettingsIcon sx={{ fontSize: "2.5rem" }} />
+            <SettingsIcon sx={{ fontSize: "2rem" }} />
           </div>
           <img
             src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
