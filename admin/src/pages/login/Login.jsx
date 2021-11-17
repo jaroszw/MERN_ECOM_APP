@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { login } from "../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import "./login.css";
 
 const Login = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
-
   const hadnleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -19,7 +23,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(user, dispatch);
-    console.log(user);
+    currentUser && navigate("/");
   };
 
   return (
