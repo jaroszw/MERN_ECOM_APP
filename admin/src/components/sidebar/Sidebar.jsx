@@ -18,6 +18,7 @@ import ShowChartIcon from "@mui/icons-material/ShowChart";
 import ReportIcon from "@mui/icons-material/Report";
 
 import "./sidebar.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -26,10 +27,12 @@ const Sidebar = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <LineStyleIcon className="sidebarIcon" />
-              Home
-            </li>
+            <Link to="/" className="link">
+              <li className="sidebarListItem">
+                <LineStyleIcon className="sidebarIcon" />
+                Home
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <TimelineIcon className="sidebarIcon" />
               Analytics
@@ -43,14 +46,18 @@ const Sidebar = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <PersonOutlineIcon className="sidebarIcon" />
-              Home
-            </li>
-            <li className="sidebarListItem">
-              <StorefrontIcon className="sidebarIcon" />
-              Analytics
-            </li>
+            <Link to="/users" className="link">
+              <li className="sidebarListItem">
+                <PersonOutlineIcon className="sidebarIcon" />
+                Users
+              </li>
+            </Link>
+            <Link to="/products" className="link">
+              <li className="sidebarListItem">
+                <StorefrontIcon className="sidebarIcon" />
+                Producs
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <EuroSymbolIcon className="sidebarIcon" />
               Sales
