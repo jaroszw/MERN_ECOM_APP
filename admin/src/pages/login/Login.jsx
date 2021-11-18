@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "../../redux/apiCalls";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,17 @@ import "./login.css";
 const Login = () => {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    currentUser && navigate("/");
+  }, [currentUser]);
+
   const hadnleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -22,8 +27,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(user, dispatch);
-    currentUser && navigate("/");
+    login(dispatch, user);
   };
 
   return (
