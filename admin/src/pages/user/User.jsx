@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./user.css";
-import { useParams } from "react-router-dom";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";

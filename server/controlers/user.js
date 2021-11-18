@@ -1,5 +1,5 @@
-import User from '../models/User.js';
-import CryptoJS from 'crypto-js';
+import User from "../models/User.js";
+import CryptoJS from "crypto-js";
 
 export const postUser = async (req, res) => {
   if (req.body.password) {
@@ -37,8 +37,8 @@ export const findUser = async (req, res) => {
 };
 
 export const findAllUsers = async (req, res) => {
+  console.log("HERE");
   const query = req.query.new;
-  console.log(query);
   try {
     const users = query
       ? await User.find({}).sort({ _id: -1 }).limit(3)
@@ -52,7 +52,7 @@ export const findAllUsers = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
-    return res.status(200).json('User has been deleted sucesfully');
+    return res.status(200).json("User has been deleted sucesfully");
   } catch (error) {
     res.status(400).json(err);
   }
@@ -69,12 +69,12 @@ export const userStats = async (req, res) => {
       { $match: { createdAt: { $gte: lastYear } } },
       {
         $project: {
-          month: { $month: '$createdAt' },
+          month: { $month: "$createdAt" },
         },
       },
       {
         $group: {
-          _id: '$month',
+          _id: "$month",
           total: { $sum: 1 },
         },
       },

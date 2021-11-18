@@ -1,86 +1,44 @@
-import './widgetSm.css';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import "./widgetSm.css";
 
 const WidgetSm = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const res = await userRequest.get("orders/?new=true");
+      setUsers(res.data);
+    };
+    getUsers();
+  }, []);
+
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
-        <li className="widgetSmListItem">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnELq88FqJJ3fRj93adsIGYvhO-TiVlgimVQ&usqp=CAU"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUserName">Anna Keller</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <VisibilityIcon className="widgetSmIcon"/>
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUserName">Anna Keller</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <VisibilityIcon className="widgetSmIcon"/>
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUserName">Anna Keller</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <VisibilityIcon className="widgetSmIcon"/>
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUserName">Anna Keller</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <VisibilityIcon className="widgetSmIcon"/>
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUserName">Anna Keller</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <VisibilityIcon className="widgetSmIcon"/>
-            Display
-          </button>
-        </li>
+        {users.map((user) => (
+          <li className="widgetSmListItem" key={user._id}>
+            {console.log(user)}
+            <img
+              src={
+                user.img ||
+                "https://analisisfinanciero.ieaf.es/images/fotografias-autores/no_user.jpg"
+              }
+              alt=""
+              className="widgetSmImg"
+            />
+            <div className="widgetSmUser">
+              <span className="widgetSmUserName">{user.username}</span>
+              <span className="widgetSmUserTitle">Software Engineer</span>
+            </div>
+            <button className="widgetSmButton">
+              <VisibilityIcon className="widgetSmIcon" />
+              Display
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );

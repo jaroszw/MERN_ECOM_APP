@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(() => {
     currentUser && navigate("/");
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const hadnleChange = (e) => {
     e.preventDefault();

@@ -1,8 +1,21 @@
-import './widgetLg.css';
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
+import "./widgetLg.css";
 
 const WidgetLg = () => {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const res = await userRequest.get("orders");
+      setOrders(res.data);
+      console.log(res);
+    };
+    getUsers();
+  }, []);
+
   const Button = ({ type }) => {
-    return <button className={'widgetLgButton ' + type}>{type}</button>;
+    return <button className={"widgetLgButton " + type}>{type}</button>;
   };
   return (
     <div className="widgetLg">
