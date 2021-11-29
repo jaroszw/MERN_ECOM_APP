@@ -1,4 +1,4 @@
-import Order from '../models/Order.js';
+import Order from "../models/Order.js";
 
 export const createOrder = async (req, res) => {
   const newOrder = new Order(req.body);
@@ -29,7 +29,7 @@ export const updateOrder = async (req, res) => {
 export const deleteOrder = async (req, res) => {
   try {
     const deleted = await Order.findByIdAndDelete(req.params.id);
-    res.status(200).json('Order has been deleted sucesfully');
+    res.status(200).json("Order has been deleted sucesfully");
   } catch (error) {
     res.status(400).json(err);
   }
@@ -49,7 +49,7 @@ export const getAllOrders = async (req, res) => {
     const orders = await Order.find();
     return res.status(200).json(orders);
   } catch (error) {
-    res.status(400).json(error);
+    return res.status(400).json(error);
   }
 };
 
@@ -65,14 +65,14 @@ export const getIncome = async (req, res) => {
       { $match: { createdAt: { $gte: prevMonth } } },
       {
         $project: {
-          month: { $month: '$createdAt' },
-          sales: '$amount',
+          month: { $month: "$createdAt" },
+          sales: "$amount",
         },
       },
       {
         $group: {
-          _id: '$month',
-          total: { $sum: '$sales' },
+          _id: "$month",
+          total: { $sum: "$sales" },
         },
       },
     ]);

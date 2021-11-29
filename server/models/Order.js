@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -8,9 +8,9 @@ const OrderSchema = new mongoose.Schema(
     ],
     amount: { type: Number, required: true },
     address: { type: Object, required: true },
-    status: { type: String, default: 'pending' },
+    status: { type: String, default: "pending" },
   },
   { timestamps: true }
 );
 
-export default mongoose.model('Order', OrderSchema);
+export default mongoose.model("Order", OrderSchema);

@@ -37,7 +37,6 @@ export const findUser = async (req, res) => {
 };
 
 export const findAllUsers = async (req, res) => {
-  console.log("HERE");
   const query = req.query.new;
   try {
     const users = query
@@ -45,7 +44,7 @@ export const findAllUsers = async (req, res) => {
       : await User.find({});
     return res.status(200).json(users);
   } catch (error) {
-    res.status(400).json(error);
+    return res.status(400).json(error);
   }
 };
 

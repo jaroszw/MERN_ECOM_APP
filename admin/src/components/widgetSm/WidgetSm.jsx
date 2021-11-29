@@ -8,7 +8,7 @@ const WidgetSm = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const res = await userRequest.get("orders/?new=true");
+      const res = await userRequest.get("users/?new=true");
       setUsers(res.data);
     };
     getUsers();
@@ -20,7 +20,6 @@ const WidgetSm = () => {
       <ul className="widgetSmList">
         {users.map((user) => (
           <li className="widgetSmListItem" key={user._id}>
-            {console.log(user)}
             <img
               src={
                 user.img ||
