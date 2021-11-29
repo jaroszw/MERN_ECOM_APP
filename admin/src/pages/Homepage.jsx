@@ -39,11 +39,8 @@ const Homepage = () => {
             { name: MONTHS[item._id - 1], "Active User": item.total },
           ])
         );
-      } catch (error) {
-        console.log(error);
-      }
+      } catch {}
     };
-
     getStats();
   }, [MONTHS]);
 
@@ -54,8 +51,8 @@ const Homepage = () => {
         grid
         data={userStats}
         title="Users Analytics"
-        dataKey="name"
-        axisName="Active Users"
+        dataKey="Active User"
+        axisName="name"
       />
       <div className="homeWidgets">
         <WidgetSm />
