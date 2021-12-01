@@ -9,8 +9,12 @@ const WidgetLg = () => {
 
   useEffect(() => {
     const getOrders = async () => {
-      const res = await userRequest.get("orders");
-      setOrders(res.data);
+      try {
+        const res = await userRequest.get("orders");
+        setOrders(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getOrders();
   }, []);
