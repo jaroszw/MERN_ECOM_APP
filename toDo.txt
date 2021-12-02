@@ -1,0 +1,13 @@
+1. Protected Routes ReactRouterDom v6.0
+medium.com/front-end-weekly/how-to-create-private-route-with-react-router-v6-fa4b9d74cb55
+
+2. Token with httpCookies
+
+3. Full CreateObject functionality 
+    - multiple choise select
+
+4. SignUp, Signup with Facebook, Google SignIn, 
+5. Reset Password 
+6. Remind Password 
+7. Layout usage 
+8. Loading Hook 
