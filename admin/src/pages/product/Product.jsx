@@ -15,6 +15,7 @@ export default function Product() {
     state.products.products.find((product) => product._id === productId)
   );
 
+  console.log(product);
   const [userIncome, setUserIncome] = useState([]);
 
   const MONTHS = useMemo(
@@ -39,7 +40,7 @@ export default function Product() {
     const getStats = async () => {
       try {
         const res = await userRequest.get(`orders/income?pid=${productId}`);
-        console.log(res);
+        // const list = res.data.sort((a, b) => a._id - b._id);
         res.data.map((item) =>
           setUserIncome((prev) => [
             ...prev,
@@ -102,9 +103,9 @@ export default function Product() {
             <label>Product Name</label>
             <input type="text" placeholder={product.title} />
             <label>Product Description</label>
-            <input type="text" placeholder={product.Description} />
+            <input type="text" placeholder={product.desc} />
             <label>Product Price</label>
-            <input type="text" placeholder={product.Price} />
+            <input type="text" placeholder={product.price} />
             <label>In Stock</label>
             <select name="inStock" id="idStock">
               <option value="true">Yes</option>
