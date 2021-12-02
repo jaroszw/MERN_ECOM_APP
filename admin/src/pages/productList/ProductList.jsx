@@ -1,28 +1,30 @@
-import React, { useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Link } from "react-router-dom";
 
-import { getAllProducts } from '../../redux/apiCalls';
-import { useSelector, useDispatch } from 'react-redux';
+import { deleteProducts, getAllProducts } from "../../redux/apiCalls";
+import { useSelector, useDispatch } from "react-redux";
 
-import './productList.css';
+import "./productList.css";
 
 const ProductList = () => {
   const { products, isFetching } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    deleteProducts(id, dispatch);
+  };
 
   useEffect(() => {
     getAllProducts(dispatch);
   }, [dispatch]);
 
   const columns = [
-    { field: '_id', headerName: 'ID', width: 200 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
-      field: 'product',
-      headerName: 'Product',
+      field: "product",
+      headerName: "Product",
       width: 200,
       renderCell: (params) => {
         return (
@@ -34,27 +36,26 @@ const ProductList = () => {
       },
     },
     {
-      field: 'inStock',
-      headerName: 'inStock',
+      field: "inStock",
+      headerName: "inStock",
       width: 200,
     },
-    { field: 'price', headerName: 'Price', width: 200 },
+    { field: "price", headerName: "Price", width: 200 },
     {
-      field: 'action',
-      headerName: 'Action',
+      field: "action",
+      headerName: "Action",
       width: 150,
       renderCell: (params) => {
-        console.log(params.row);
         return isFetching ? (
-          '...Loading proucts'
+          "...Loading proucts"
         ) : (
           <React.Fragment>
-            <Link to={'/product/' + params.row.id}>
+            <Link to={"/product/" + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteForeverIcon
               className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </React.Fragment>
         );

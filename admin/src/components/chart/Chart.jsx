@@ -10,7 +10,6 @@ import {
 } from "recharts";
 
 export default function Chart({ title, data, dataKey, grid, axisName }) {
-  console.log(dataKey);
   return (
     <div className="chart">
       <h3 className="chartTitle">{title}</h3>
